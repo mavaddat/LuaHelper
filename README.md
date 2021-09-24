@@ -1,69 +1,77 @@
 # LuaHelper
+
 LuaHelper is a free lua plugin. Intellisense, Linting, Debugging, Code formatting, High-performance, and more.
 
-## 介绍
-Lua因其语法简单、使用灵活，在游戏开发中十分流行。但其生态并不完善，IDE开发工具及配套支持较少，一定程度上影响了Lua的开发效率及质量。LuaHelper遵从微软Language Server Protocol协议，是采用go语言开发的一种跨平台Lua代码编辑及检测工具。
+## Introduction
 
-相较目前市面其他Lua插件，具有以下**改进**：
+Lua is very popular in game development because of its simple syntax and flexible use. But its ecology is not perfect, IDE development tools and supporting support are few, which affects the development efficiency and quality of Lua to a certain extent. LuaHelper complies with the Microsoft Language Server Protocol and is a cross-platform Lua code editing and detection tool developed using the go language.
 
-- [X] 1.协程开发，实时检测，毫秒级输出检测结果
-- [X] 2.支持大型Lua项目，完美支持1000+文件项目工程的编辑与检测
-- [X] 3.全面的错误类型检测，包括：语法检测、语义检测
-- [X] 4.多种类引用查找，包括：多文件引用查找、多层引用查找
-- [X] 5.丰富的可配置项，包括：多种告警信息配置、可忽略文件设定
-- [X] 6.内存消耗低，低性能机器仍可流畅运行
+Compared with other Lua plugins currently on the market, it has the following **improvements**:
 
-## 文档
-* [Background [项目背景]](./docs/manual/introduction.md "项目背景介绍") 
-* [Configuration [检查配置]](./docs/manual/config.md "检查配置") 
-* [Manual [源码介绍]](./docs/manual/mainsource.md "源码介绍")
+-[X] 1. Coroutine development, real-time detection, output detection results in milliseconds
+-[X] 2. Support large-scale Lua projects, perfect support for editing and testing of projects with 1000+ files
+-[X] 3. Comprehensive error type detection, including: syntax detection, semantic detection
+-[X] 4. Various types of reference search, including: multi-file reference search, multi-layer reference search
+-[X] 5. Abundant configurable items, including: multiple alarm information configuration, ignorable file settings
+-[X] 6. Low memory consumption, low-performance machines can still run smoothly
 
-## 功能特性
+## Documentation
 
-### 编辑辅助
-* [Defintion Find [定义跳转]](./docs/manual/Feature.md/#DefintionFind)
-* [Find All References [引用查找]](./docs/manual/Feature.md/#FindAllReferences)
-* [Document Symbols [文件符号表查询]](./docs/manual/Feature.md/#DocumentSymbols)
-* [Workspace Symbols [工程符号表查询]](./docs/manual/Feature.md/#WorkspaceSymbols)
-* [Auto Code Completion [自动代码补全]](./docs/manual/Feature.md/#AutoCodeCompletion)
-* [Format Code [代码格式化]](./docs/manual/Feature.md/#FormatCode)
-* [Hover [代码悬停]](./docs/manual/Feature.md#Hover)
-* [Hightlight Global Var [全局变量着色]](./docs/manual/Feature.md/#HightlightGlobalVar)
+* [Background [Project Background]](./docs/manual/introduction.md "Project Background Introduction")
+* [Configuration [Check Configuration]](./docs/manual/config.md "Check Configuration")
+* [Manual [source introduction]](./docs/manual/mainsource.md "source introduction")
 
-### 代码检测
-* [Syntax Check [语法检测]](./docs/manual/Feature.md/#SyntaxCheck)
-* [Semantic Check [语义检测]](./docs/manual/Feature.md/#SemanticCheck)
-* [Quick Analysis [快速增量分析]](./docs/manual/Feature.md/#QuickAnalysis)
+## Features
 
-### 代码调试
-调试功能集成了腾讯开源[LuaPanda](https://github.com/Tencent/LuaPanda)的调试组件，采用了[Debug Adapter Protocol](https://microsoft.github.io/debug-adapter-protocol/)调试协议。debugger主体使用lua语言开发，调试程序只要引入LuaPanda.lua文件，即可方便开启调试功能。
-* [Debug Principle [调试原理]](./docs/manual/debugPrinciple.md)
-* [Debug Use [接入调试方法]](./docs/manual/usedebug.md)
-* [Debug and Run Sigle Lua File [单文件调试与运行]](./docs/manual/debugsinglefile.md)
+### Editing assistance
 
-## 安装
+* [Defintion Find [Definition Jump]](./docs/manual/Feature.md/#DefintionFind)
+* [Find All References [reference search]](./docs/manual/Feature.md/#FindAllReferences)
+* [Document Symbols [Document Symbol Table Query]](./docs/manual/Feature.md/#DocumentSymbols)
+* [Workspace Symbols [Engineering symbol table query]](./docs/manual/Feature.md/#WorkspaceSymbols)
+* [Auto Code Completion [Auto Code Completion]](./docs/manual/Feature.md/#AutoCodeCompletion)
+* [Format Code [code format]](./docs/manual/Feature.md/#FormatCode)
+* [Hover [Code hover]](./docs/manual/Feature.md#Hover)
+* [Hightlight Global Var [Global Variable Coloring]](./docs/manual/Feature.md/#HightlightGlobalVar)
 
-**应用市场安装**
-* 点击Vs Code应用市场图标
-* 在输入框中搜索 luahelper
-* 点击安装Lua Helper
+### Code detection
+
+* [Syntax Check [Syntax Check]](./docs/manual/Feature.md/#SyntaxCheck)
+* [Semantic Check [Semantic Check]](./docs/manual/Feature.md/#SemanticCheck)
+* [Quick Analysis [Quick Incremental Analysis]](./docs/manual/Feature.md/#QuickAnalysis)
+
+### Code debugging
+
+The debugging function integrates the debugging components of Tencent open source [LuaPanda](https://github.com/Tencent/LuaPanda), and uses the [Debug Adapter Protocol](https://microsoft.github.io/debug-adapter-protocol/ ) Debugging protocol. The main body of the debugger is developed in lua language, and the debugger only needs to import the LuaPanda.lua file to enable the debugging function.
+
+* [Debug Principle [Debug Principle]](./docs/manual/debugPrinciple.md)
+* [Debug Use [Access debugging method]](./docs/manual/usedebug.md)
+* [Debug and Run Sigle Lua File [Single File Debug and Run]](./docs/manual/debugsinglefile.md)
+
+## Installation
+
+**App market installation**
+
+* Click the Vs Code application market icon
+* Search luahelper in the input box
+* Click to install Lua Helper
 
 ![avatar](https://raw.githubusercontent.com/yinfei8/LuaHelper/master/images/Install.gif)
 
-**应用市场异常**
+**App Market Abnormal**
 
-点击[应用链接](https://marketplace.visualstudio.com/items?itemName=yinfei.luahelper&ssr=false#overview)，尝试重新安装
-
+Click [app link](https://marketplace.visualstudio.com/items?itemName=yinfei.luahelper&ssr=false#overview) and try to install again
 
 ## Acknowledgements
-* [luago-books](https://github.com/zxh0/luago-book), go语言生成lua的AST，修改了源码（对AST的每个节点增加了列的属性，同时也优化了性能）。
-* [LuaFormatter](https://github.com/Koihik/LuaFormatter), c++写的Lua代码格式化库，性能较高。
-* [LuaPanda](https://github.com/Tencent/LuaPanda), 集成了LuaPanda的调试组件，LuaPanda的作者stuartwang也给我们提供了很多帮助。
-* [EmmyLua](https://github.com/EmmyLua), 作者阿唐对我们整个插件的实现提供很多帮助和建议。
 
+* [luago-books](https://github.com/zxh0/luago-book), Go language generates lua AST, modified the source code (adding column attributes for each node of the AST, and also optimizing performance ).
+* [LuaFormatter](https://github.com/Koihik/LuaFormatter), a Lua code formatting library written in c++, with high performance.
+* [LuaPanda](https://github.com/Tencent/LuaPanda), integrates the debugging components of LuaPanda, LuaPanda author stuartwang also provided us with a lot of help.
+* [EmmyLua](https://github.com/EmmyLua), the author, Tang, provides a lot of help and suggestions for the implementation of our entire plugin.
 
 ## Support
-如有LuaHelper有关问题先参阅 [FAQ](#FAQ) ，如有问题建议使用 [issues](https://github.com/yinfei8/LuaHelper/issues) ，我们会关注和回复。
 
-Email：yvanfyin@tencent.com; handsomeli@tencent.com; richardzha@tencent.com</br>
-QQ群：747590892
+If you have any questions about LuaHelper, please refer to [FAQ](#FAQ) first. If you have any questions, please use [issues](https://github.com/yinfei8/LuaHelper/issues). We will pay attention and reply.
+
+Email: yvanfyin@tencent.com; handsomeli@tencent.com; richardzha@tencent.com</br>
+QQ group: 747590892

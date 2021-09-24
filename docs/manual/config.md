@@ -1,27 +1,28 @@
 
-# 代码检查配置
+# Code check configuration
 
-* 1 [代码检查种类](#代码检查种类)
-  * 1.1 [语法错误](#syntaxErr)
-  * 1.2 [变量未找到定义](#noDefineErr)
-  * 1.3 [全局变量先使用，后定义](#cycleDefineErr)
-  * 1.4 [局部变量定义了，未使用](#localNoUse)
-  * 1.5 [table定义构造中有重复的key](#tableDuplicateKey)
-  * 1.6 [加载其他的lua文件，未找到文件义](#referFileErr)
-  * 1.7 [赋值语句参数个数不匹配](#assignParamErr)
-  * 1.8 [局部变量定义参数个数不匹配](#localParamErr)
-  * 1.9 [goto用法未找到对应的lable标记](#gotoErr)
-  * 1.10 [函数调用参数个数大于定义参数的个数](#funCallParamErr)
-  * 1.11 [import其他的lua文件，成员变量未定义](#importVarErr)
-  * 1.12 [if not包含的代码块有误](#ifCheckErr)
-  * 1.13 [函数定义的参数是否重复](#funcParamDuplicateErr)
-  * 1.14 [二元表达式，左右两边的表达式一样](#duplicateExpErr)
-* 2 [代码检查配置文件](#代码检查配置文件)
-  * 2.1 [配置文件说明](#配置文件说明)
-  * 2.2 [配置文件模板下载](#配置文件模板下载)
+- [Code check configuration](#code-check-configuration)
+  - [1 代码检查种类<span id="代码检查种类"></span>](#1-代码检查种类)
+    - [1. 语法错误<span id="syntaxErr"></span>](#1-语法错误)
+    - [1.2 变量未找到定义<span id="noDefineErr"></span>](#12-变量未找到定义)
+    - [1.3 全局变量先使用，后定义<span id="全局变量先使用"></span>](#13-全局变量先使用后定义)
+    - [1.4 局部变量定义了，未使用<span id="localNoUse"></span>](#14-局部变量定义了未使用)
+    - [1.5 table定义构造中有重复的key<span id="tableDuplicateKey"></span>](#15-table定义构造中有重复的key)
+    - [1.6 加载其他的lua文件，未找到文件<span id="referFileErr"></span>](#16-加载其他的lua文件未找到文件)
+    - [1.7 赋值语句参数个数不匹配<span id="assignParamErr"></span>](#17-赋值语句参数个数不匹配)
+    - [1.8 局部变量定义参数个数不匹配<span id="localParamErr"></span>](#18-局部变量定义参数个数不匹配)
+    - [1.9 goto用法未找到对应的lable标记<span id="gotoErr"></span>](#19-goto用法未找到对应的lable标记)
+    - [1.10 函数调用参数个数大于定义参数的个数<span id="funCallParamErr"></span>](#110-函数调用参数个数大于定义参数的个数)
+    - [1.11 import其他的lua文件，成员变量未定义<span id="importVarErr"></span>](#111-import其他的lua文件成员变量未定义)
+    - [1.12 if not包含的代码块有误<span id="ifCheckErr"></span>](#112-if-not包含的代码块有误)
+    - [1.13 函数定义的参数是否重复<span id="funcParamDuplicateErr"></span>](#113-函数定义的参数是否重复)
+    - [1.14 二元表达式，左右两边的表达式是否一样<span id="duplicateExpErr"></span>](#114-二元表达式左右两边的表达式是否一样)
+  - [2 代码检查配置文件](#2-代码检查配置文件)
+    - [2.1 配置文件说明](#21-配置文件说明)
+    - [2.2 配置文件模板下载](#22-配置文件模板下载)
 
 ## 1 代码检查种类<span id="代码检查种类"></span>
-### 1.1 语法错误<span id="syntaxErr"></span>
+### 1. 语法错误<span id="syntaxErr"></span>
 告警类型：1, 提示前缀 [Warn type:1]</br>
 指不满足lua的语法，例如if 语句没有匹配的then等等。
 ```lua
@@ -57,8 +58,8 @@ local a = 1 --这里定义了a局部变量，但是后面没有使用到，告�
 告警类型：5, 提示前缀 [Warn type:5]
 ```lua
 local a = {
-    b = 1,  --首次定义了成员b
-    b = 2,  --再次定义了成员b，重复了，告警
+      b = 1,  --首次定义了成员b
+      b = 2,  --再次定义了成员b，重复了，告警
 }
 ```
 ### 1.6 加载其他的lua文件，未找到文件<span id="referFileErr"></span>
@@ -87,11 +88,11 @@ local c = a, b   -- 局部变量定义左右只有一个变量，右边赋值了
 ```lua
 local array = {1, 2, 3}
 for k, v in pairs(array) do
-    if v == 1 then
-        goto cont       -- 没有匹配的cont标签值，只有continue，进行告警
-    end
+      if v == 1 then
+          goto cont       -- 没有匹配的cont标签值，只有continue，进行告警
+      end
 
-    ::continue::
+      ::continue::
 end
 ```                
 ### 1.10 函数调用参数个数大于定义参数的个数<span id="funCallParamErr"></span>
@@ -99,7 +100,7 @@ end
 ```lua
 -- add two value
 function calcAdd(one, two)
-    print(one + two)
+      print(one + two)
 end
 
 calcAdd(1, 2, 3)      -- 函数只定义了两个参数，这里调用的参数有三个，进行告警
@@ -115,14 +116,14 @@ test.CalcTest() -- 若test.lua不存在全局变量函数 CalcTest，进行告�
 告警类型：12, 提示前缀 [Warn type:12]</br>
 ```lua
 if not ss then
-    print(ss.name)  -- ss这里判断为 nil，调用 name成员，进行告警
+      print(ss.name)  -- ss这里判断为 nil，调用 name成员，进行告警
 end
 ``` 
 ### 1.13 函数定义的参数是否重复<span id="funcParamDuplicateErr"></span>
 告警类型：13, 提示前缀 [Warn type:13]</br>
 ```lua
 function CalcAdd(one, one) -- 函数定义的重复的参数one，进行告警
-    print(one)
+      print(one)
 end
 ``` 
 ### 1.14 二元表达式，左右两边的表达式是否一样<span id="duplicateExpErr"></span>
@@ -148,53 +149,53 @@ local c = a and a  -- and表达式左右两边一样，都是 a，进行告警
 
 ```json
 {
-    "BaseDir":"./",
-    "ShowWarnFlag":          1,
-    "ShareSymbolsFlag":      1,
-    "ReferMatchPathFlag":    0,
-    "GvalTipFlag":           1,
-    "IgnoreFileNameVarFlag": 0,
-    "ProjectFiles":[
-    
-    ],
-    "IgnoreModules":["hive", "import"],
-    "IgnoreFileVars": [
-        {
-            "File": "port/gm.lua",
-            "Vars": ["bb", "cc"]
-        },
-         {
-            "File": "port/ss.lua",
-            "Vars": ["aa", "dd"]
-        }
-    ],
-    "IgnoreReadFiles": [
-        "config/port.lua",
+      "BaseDir":"./",
+      "ShowWarnFlag":          1,
+      "ShareSymbolsFlag":      1,
+      "ReferMatchPathFlag":    0,
+      "GvalTipFlag":           1,
+      "IgnoreFileNameVarFlag": 0,
+      "ProjectFiles":[
+      
+      ],
+      "IgnoreModules":["hive", "import"],
+      "IgnoreFileVars": [
+          {
+              "File": "port/gm.lua",
+              "Vars": ["bb", "cc"]
+          },
+           {
+              "File": "port/ss.lua",
+              "Vars": ["aa", "dd"]
+          }
+      ],
+      "IgnoreReadFiles": [
+          "config/port.lua",
 		"config/act.lua"
-    ],
-    "IgnoreErrorTypes": [
-        4
+      ],
+      "IgnoreErrorTypes": [
+          4
 	],
 	"IgnoreFileOrFloder": [
 		"port/on.*lua",
 		"tests/",
 		"one.lua"
 	],
-    "IgnoreFileErr": [
-       "port/add.lua",
-       "common/test.lua"
+      "IgnoreFileErr": [
+         "port/add.lua",
+         "common/test.lua"
 	],
-    "IgnoreFileErrTypes": [
-        {
-            "File": "port/bbb.lua",
-            "Types": [4]
-        },
-        {
-            "File": "port/ss.lua",
-            "Types": [4, 5]
-        }
-    ],
-    "ProtocolVars": []
+      "IgnoreFileErrTypes": [
+          {
+              "File": "port/bbb.lua",
+              "Types": [4]
+          },
+          {
+              "File": "port/ss.lua",
+              "Types": [4, 5]
+          }
+      ],
+      "ProtocolVars": []
 }
 ``` 
 
@@ -234,85 +235,85 @@ lua工程经常需要调用C++等其他宿主语言导入的符号，这里需�
 上面的含义：是整体上忽略"hive"和"import"变量找不到定义的告警（告警类型：2）。
 
 * IgnoreFileVars:[],
-    ```json
-    "IgnoreFileVars":[
-        {
-            "File": "port/gm.lua",
-            "Vars": ["bb", "cc"]
-        },
-         {
-            "File": "port/ss.lua",
-            "Vars": ["aa", "dd"]
-        }
-    ],
-    ``` 
-  指定的文件中，忽略指定的未定义变量。上面的配置的含义是：</br>
-  "port/gm.lua"文件, 忽略找不到"bb"和"cc"变量定义的告警（告警类型：2）。</br>
-  "port/ss.lua"文件, 忽略找不到"aa"和"dd"变量定义的告警（告警类型：2）。
-  
-* IgnoreReadFiles:[],
-    ```json
-    "IgnoreReadFiles":[
-        "config/port.lua",
-        "config/act.lua"
-    ],
-    ``` 
-    忽略读取不到指定的文件告警（告警类型：6）。</br>
-    上面的含义是，忽略读取不到config/port.lua和config/act.lua文件的告警。
+      ```json
+      "IgnoreFileVars":[
+          {
+              "File": "port/gm.lua",
+              "Vars": ["bb", "cc"]
+          },
+           {
+              "File": "port/ss.lua",
+              "Vars": ["aa", "dd"]
+          }
+      ],
+      ``` 
+    指定的文件中，忽略指定的未定义变量。上面的配置的含义是：</br>
+    "port/gm.lua"文件, 忽略找不到"bb"和"cc"变量定义的告警（告警类型：2）。</br>
+    "port/ss.lua"文件, 忽略找不到"aa"和"dd"变量定义的告警（告警类型：2）。
     
+* IgnoreReadFiles:[],
+      ```json
+      "IgnoreReadFiles":[
+          "config/port.lua",
+          "config/act.lua"
+      ],
+      ``` 
+      忽略读取不到指定的文件告警（告警类型：6）。</br>
+      上面的含义是，忽略读取不到config/port.lua和config/act.lua文件的告警。
+      
 * IgnoreErrorTypes:[4],</br>
-  整体忽略指定类型的告警，可以忽略多项。</br>
-  填写的值为整型，为上面的代码检查种类：1-14</br>
-  例如上面填写的4，表示忽略告警类型4(局部变量定义了，未使用)。
+    整体忽略指定类型的告警，可以忽略多项。</br>
+    填写的值为整型，为上面的代码检查种类：1-14</br>
+    例如上面填写的4，表示忽略告警类型4(局部变量定义了，未使用)。
 
 * IgnoreFileOrFloder:[],
-    ```json
-    "IgnoreFileOrFloder": [
-    	"port/on.*lua",
-    	"tests/",
-    	"one.lua"
-    ],
-    ``` 
-    忽略分析指定的文件或文件夹，支持正则。忽略分析的文件，不会提供各种编辑辅助，也不会进行代码检查。</br>
-    上面配置的含义为：</br>
-    忽略分析port文件夹下，以on开头的lua文件</br>
-    忽略分析tests文件夹</br>
-    忽略分析one.lua文件</br>
-    
+      ```json
+      "IgnoreFileOrFloder": [
+      	"port/on.*lua",
+      	"tests/",
+      	"one.lua"
+      ],
+      ``` 
+      忽略分析指定的文件或文件夹，支持正则。忽略分析的文件，不会提供各种编辑辅助，也不会进行代码检查。</br>
+      上面配置的含义为：</br>
+      忽略分析port文件夹下，以on开头的lua文件</br>
+      忽略分析tests文件夹</br>
+      忽略分析one.lua文件</br>
+      
 * "IgnoreFileErr": [],
-    ```json
-    "IgnoreFileErr": [
-        "port/add.lua",
-        "common/test.lua"
-    ],
-    ``` 	
-    忽略指定文件的所有告警。</br>
-    上面的含义是: "port/add.lua"和"common/test.lua"文件所有告警将会忽略。
+      ```json
+      "IgnoreFileErr": [
+          "port/add.lua",
+          "common/test.lua"
+      ],
+      ``` 	
+      忽略指定文件的所有告警。</br>
+      上面的含义是: "port/add.lua"和"common/test.lua"文件所有告警将会忽略。
 
 * "IgnoreFileErrTypes": [],
-    ```json
-    "IgnoreFileErrTypes": [
-        {
-            "File": "port/bbb.lua",
-            "Types": [4]
-        },
-        {
-            "File": "port/ss.lua",
-            "Types": [4, 5]
-        }
-    ],
-    ```
-    忽略指定文件指定类型的告警，上面的含义是：</br>
-    "port/bbb.lua"文件，忽略类型为：4的告警。</br>
-    "port/ss.lua"文件，忽略类型为：4、5的告警。
-    
+      ```json
+      "IgnoreFileErrTypes": [
+          {
+              "File": "port/bbb.lua",
+              "Types": [4]
+          },
+          {
+              "File": "port/ss.lua",
+              "Types": [4, 5]
+          }
+      ],
+      ```
+      忽略指定文件指定类型的告警，上面的含义是：</br>
+      "port/bbb.lua"文件，忽略类型为：4的告警。</br>
+      "port/ss.lua"文件，忽略类型为：4、5的告警。
+      
 * "ProtocolVars": []
-   为笔者后台项目定制的协议前缀提示，默认可以忽略。
+     为笔者后台项目定制的协议前缀提示，默认可以忽略。
 
 
 ### 2.2 配置文件模板下载
 
-  [luahelper.json模板](./../jsonconfig/luahelper.json "luahelper.json配置文件")
-  
-  请根据项目需求，进行相应的修改。</br> (注：当vscode工程目录下没有luahelp.json配置文件，将会忽略所有的告警)
-  
+    [luahelper.json模板](./../jsonconfig/luahelper.json "luahelper.json配置文件")
+    
+    请根据项目需求，进行相应的修改。</br> (注：当vscode工程目录下没有luahelp.json配置文件，将会忽略所有的告警)
+    
